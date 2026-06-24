@@ -1,65 +1,84 @@
-import Image from "next/image";
+import Link from "next/link";
+import { mockApps } from "@/lib/mockApps";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative flex min-h-screen flex-col items-center justify-center p-6 md:p-24 overflow-hidden bg-slate-50 selection:bg-purple-200">
+      {/* Dynamic Background Blurs */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-300/40 mix-blend-multiply filter blur-[100px] animate-blob"></div>
+      <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] rounded-full bg-cyan-300/40 mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000"></div>
+      <div className="absolute bottom-[-20%] left-[20%] w-[600px] h-[600px] rounded-full bg-pink-300/40 mix-blend-multiply filter blur-[100px] animate-blob animation-delay-4000"></div>
+
+      <div className="relative z-10 max-w-5xl w-full flex flex-col items-center text-center">
+        <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/40 border border-white/60 backdrop-blur-md shadow-sm mb-8">
+          <span className="flex h-2 w-2 rounded-full bg-purple-500 mr-2 animate-pulse"></span>
+          <span className="text-sm font-medium text-slate-800 tracking-wide">Next-Gen Application Runtime</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-purple-900 to-slate-800">
+          AI App Generator
+        </h1>
+        <p className="text-lg md:text-xl text-slate-600 mb-16 max-w-2xl font-light leading-relaxed">
+          Select a configuration below to dynamically render a full application, or enter the Live Builder to craft your own JSON and see changes in real-time.
+        </p>
+
+        {/* Live Builder CTA */}
+        <Link href="/builder" className="group block outline-none mb-12 w-full max-w-4xl">
+          <div className="relative h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-[1px] rounded-3xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500">
+            <div className="bg-white/90 backdrop-blur-3xl p-8 rounded-[23px] h-full flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-purple-700 transition-colors">
+                  Live JSON Builder
+                </h2>
+                <p className="text-slate-600 text-sm">
+                  Interactive split-screen IDE. Edit JSON on the left, watch it render dynamically on the right. Powered by Monaco Editor & Zod Validation.
+                </p>
+              </div>
+              <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        <div className="w-full max-w-4xl flex items-center mb-8">
+          <div className="h-px bg-slate-200 flex-1"></div>
+          <span className="px-4 text-sm text-slate-400 font-semibold uppercase tracking-widest">Or browse templates</span>
+          <div className="h-px bg-slate-200 flex-1"></div>
         </div>
-      </main>
-    </div>
+
+        <div className="grid md:grid-cols-2 gap-8 w-full max-w-4xl">
+          {mockApps.map((app) => (
+            <Link key={app.id} href={`/${app.id}`} className="group block outline-none">
+              <div className="relative h-full bg-white/60 backdrop-blur-xl p-8 rounded-3xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 overflow-hidden text-left">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform duration-500">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h2 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-purple-700 transition-colors">
+                    {app.name}
+                  </h2>
+                  <p className="text-slate-500 text-sm leading-relaxed">
+                    Render this configuration dynamically directly from the JSON payload with complete fault tolerance.
+                  </p>
+                  
+                  <div className="mt-8 flex items-center text-sm font-semibold text-purple-600 group-hover:text-purple-500">
+                    Launch Application
+                    <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </main>
   );
 }
