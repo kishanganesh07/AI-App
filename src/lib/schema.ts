@@ -56,7 +56,7 @@ const ChartPropsSchema = z.object({
 // we'll just define the base component schema.
 
 const BaseComponentSchema = z.object({
-  type: z.string({ required_error: "Component must have a type" }),
+  type: z.string().min(1, "Component must have a type"),
   props: z.record(z.string(), z.any()).optional().default({}),
   children: z.array(z.any()).optional(), // Will type-check loosely to avoid circular dependency pain in Zod for now
 });
